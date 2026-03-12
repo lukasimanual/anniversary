@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Italianno&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Anniversary</title>
+</head>
+
+<style>
+:root{
+  --primary:#A46C4F;     /* tombol utama */
+  --secondary:#F5EFE8;   /* background utama lembut */
+  --accent:#7B3F3F;      /* warna romantis (hover / highlight) */
+  --soft:#E8DED4;        /* background section */
+  --dark:#2C2C2C;        /* teks utama */
+  --highlight:#C9A27E;   /* garis dekorasi / divider */
+}
+  
+  body{
+    background: var(--secondary);
+    margin: 0;
+    color: var(--dark);
+    font-family: Poppins, sans;
+    font-size: 16px;
+  }
+  
+  html{
+    scroll-behavior: smooth;
+  }
+  
+  .btn{
+    background: var(--primary);
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+  
+    display: block;
+    width: fit-content;
+    margin: 20px auto;
+    transition: transform 0.3;
+    border: none;
+  }
+  
+  .btn:hover{
+    transform: scale(1.05);
+    background: var(--accent);
+  }
+  
+  .hero {
+    position: relative;
+    height: 100vh; /* penuh layar */
+    background-image: url('kisah.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.4); /* opsional biar lebih gelap */
+    backdrop-filter: blur(5px); /* ini bikin blur gambar */
+  }
+  
+  .overlay{
+    position: relative; /* supaya di atas pseudo-element */
+    color: white;
+    text-align: center;
+    z-index: 1;
+    padding: 20px;
+  }
+  
+  .divider{
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+    gap: 10px;
+  }
+  
+  .divider::before,
+  .divider::after{
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--highlight);;
+    }
+    
+  .divider span{
+    font-family: 'Italianno', serif;
+    padding: 0 10px;
+    font-size: 40px;
+  }
+  
+  .story{
+    height: 100vh;
+    max-width: ;
+  }
+  
+  h2{
+    text-align: center;
+    padding-top: 50px;
+  }
+  
+  .kisah p{
+    text-align: justify;
+    padding: 20px;
+  }
+  
+  p{
+    word-spacing: 4px;
+  }
+  
+  .kisah img {
+    width: 100%;
+    max-width: 300px;
+    border: 5px solid var(--soft);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    display: block;
+    margin: auto;
+  }
+  
+  .kisah img:hover {
+    transform: scale(1.05);
+    background: var(--accent);
+  }
+  
+  .horizontal-scroll{
+    width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  
+  .horizontal-scroll::-webkit-scrollbar{
+    display: none;
+  }
+  
+  .container{
+    display: flex;
+    gap: 1rem;
+    padding: 20px 0;
+  }
+  
+  .item{
+    flex: 0 0 300px;
+    border: 5px solid var(--soft);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+  }
+  
+  .item:hover{
+    transform: scale(1.05);
+  }
+  
+  .item img{
+    width: 100%;
+    display: block;
+    border-radius: 8px;
+  }
+  
+  .caption{
+    font-size:14px;
+    text-align:center;
+    margin-top:6px;
+    color:#555;
+  }
+  
+  .scroll-wrapper{
+    width: 100%;
+    position: relative;
+  }
+  
+  .scroll-wrapper::before,
+  .scroll-wrapper::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 70px;
+    pointer-events: none;
+    z-index: 2;
+  }
+  
+  .scroll-wrapper::before{
+    left: 0;
+    background: linear-gradient(to right, #F5EFE8, transparent);
+  }
+  
+  .scroll-wrapper::after{
+    right: 0;
+    background: linear-gradient(to left, #F5EFE8, transparent);
+  }
+  
+  #kalimat{
+    text-align: justify;
+    padding: 20px;
+    padding-right: 20px;
+  }
+
+  .pesangres{
+    padding: 20px;
+    text-align: justify;
+  }
+  
+  footer{
+    text-align: center;
+    background: var(--soft);
+    padding: 15px;
+  }
+  
+  .popup{
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+  }
+  
+  .popup-box{
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 300px;
+    animation: fadeIn 0.5s ease;
+  }
+  
+  .popup-box button{
+    margin-top: 10px;
+    padding: 8px 15px;
+    border: none;
+    background: var(--primary);
+    color: white;
+    border-radius: 5px;
+  }
+  
+  @keyframes fadeIn{
+    from{
+      opacity:0;
+      transform:scale(0.9);
+    }
+    to{
+      opacity:1;
+      transform:scale(1);
+    }
+  }
+  
+  .final-popup{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.6);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:999;
+  }
+  
+  .popup-content{
+    background:var(--secondary);
+    padding:20px;
+    border-radius:10px;
+    max-width:320px;
+    text-align:center;
+    animation:popupFade 0.4s ease;
+  }
+  
+  .popup-content button{
+    margin-top:15px;
+    padding:8px 18px;
+    border:none;
+    background:var(--primary);
+    color:white;
+    border-radius:5px;
+    cursor:pointer;
+  }
+  
+  @keyframes popupFade{
+    from{
+      opacity:0;
+      transform:scale(0.9);
+    }
+    to{
+      opacity:1;
+      transform:scale(1);
+    }
+  }
+
+</style>
+
+<body>
+  <section class="hero">
+    <div class="overlay">
+      <h1>1 Year With You</h1>
+      <p>A small website for the person who made my year unforgettable.</p>
+      <h3>28 March 2025 — 28 March 2026</h3>
+      <a href="#story" class="btn">Start The Story</a>
+      <h4>Buat Temenin Kamu Scroll</h4>
+      <audio controls>
+        <source src="buatgres.mp3" type="audio/mpeg">
+      </audio>
+    </div>
+  </section>
+  
+  <section class="story" id="story">
+      <div class="kisah">
+        <h2 class="divider"><span>The First Message</span></h2>
+        <p>Aku masih inget tau pas aku dm kamu pertama kali.
+        gada seng spesial sih, cuma hari biasa kaya hari"
+        sebelum e.
+        Tapi aku gatau, aku suka aja bolak balik liat
+        profilmu  hehe.
+        Aku baca bio kamu, liat foto fotomu, terus aku
+        mikir, tak dm ta ga yoo.</p>
+        <img src="kisah1.jpg" alt="gambar">
+        <p>Pesan singkat gitu doangg.
+        keliatan e malah biasa biasa aja.
+        Tapi dari dm itu, semuanya berubah.
+        Pesan singkat dadi kebiasaan
+        Kebiasaan jadi nyaman.
+        dan aku ga nyangka
+        pesan pertama itu menjadi awal dari cerita kita.</p>
+        <a href="#kisahkita" class="btn">klik en gresss</a>
+    </div>
+  </section>
+  
+  <section class="story" id="kisahkita">
+    <h2 class="divider"><span>Galery Kenangan</span></h2>
+    <div class="scroll-wrapper">
+      <div class="horizontal-scroll">
+        <div class="container">
+          <div class="item">
+            <img src="kisah2.jpg" alt="">
+            <p class="caption">Jumat, 30 Mei 2025</p>
+          </div>
+          <div class="item">
+            <img src="kisah3.jpg" alt="">
+            <p class="caption">Jumat, 30 Mei 2025</p>
+          </div>
+          <div class="item">
+            <img src="kisah4.jpg" alt="">
+            <p class="caption">Sabtu, 6 September 2025</p>
+          </div>
+          <div class="item">
+            <img src="kisah5.jpeg" alt="">
+            <p class="caption">Sabtu, 6 September 2025</p>
+          </div>
+          <div class="item">
+            <img src="kisah6.jpeg" alt="">
+            <p class="caption">Minggu, 28 September 2025</p>
+          </div>
+          <div class="item">
+            <img src="kisah7.jpeg" alt="">
+            <p class="caption">Minggu, 28 September 2025</p>
+          </div>
+          <div class="item">
+            <img src="kisah8.jpg" alt="">
+            <p class="caption">Sabtu, 1 November 2025</p>
+          </div>
+          <div class="item">
+            <img src="kisah9.jpg" alt="">
+            <p class="caption">Sabtu, 1 November 2025</p>
+          </div>
+          <div class="item">
+            <img src="kisah10.jpeg" alt="">
+            <p class="caption">Rabu, 10 Desember 2025</p>
+          </div>
+          <div class="item">
+            <img src="kisah11.jpg" alt="">
+            <p class="caption">Sabtu, 17 Januari 2026</p>
+          </div>
+          <div class="item">
+            <img src="kisah12.jpg" alt="">
+            <p class="caption">Sabtu, 17 Januari 2026</p>
+          </div>
+          <div class="item">
+            <img src="kisah13.jpg" alt="">
+            <p class="caption">Sabtu, 17 Januari 2026</p>
+          </div>
+          <div class="item">
+            <img src="kisah14.jpg" alt="">
+            <p class="caption">Sabtu, 17 Januari 2026</p>
+          </div>
+          <div class="item">
+            <img src="kisah15.jpg" alt="">
+            <p class="caption">Sabtu, 17 Januari 2026</p>
+          </div>
+          <div class="item">
+            <img src="kisah16.jpg" alt="">
+            <p class="caption">Sabtu, 17 Januari 2026</p>
+          </div>
+          <div class="item">
+            <img src="kisah17.jpg" alt="">
+            <p class="caption">Sabtu, 17 Januari 2026</p>
+          </div>
+          <div class="item">
+            <img src="kisah18.jpg" alt="">
+            <p class="caption">Sabtu, 17 Januari 2026</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="kalimat">
+      <p>Foto-foto ini cuma sebagian kecil dari cerita kita. Mungkin buat orang lain biasa aja, tapi buat aku
+        setiap momen di sini selalu aku inget.</p>
+    </div>
+    <a href="#pesan" class="btn">Pencet Lagi</a>
+      
+    </div>
+  </section>
+  
+  <section id="pesan">
+    <h2 class="divider"><span>A Letter For You</span></h2>
+    <div class="pesangres">
+      <p>Sayang, makasih ya selalu ada buat aku 1 tahun ini, meski awalnya kita ngga saling kenal bahkan belum pernah ketemu dan sampai pada saatnya aku dikasih tau Aldy username igmu, aku awalnya sih ragu buat dm kamu bahkan aku ngga kepikiran kalo aku dan jamu bisa jadi kita hehehe. Jujur grace aku awalnya minder buat deketin cewe, bukan tanpa alasan tapi emang aku belum pernah deketin cewe makanya aku agak cringe dan bikin kali ilfeel dan aku juga bukan orang seng pinter buat nyari topik, tapi aku ngikuti kata hatiku buat dm kamu wkwkwkwkwk. lama kelamaan aku liat kamu punya kepribadian yang aku suka, mulai dari kamu seiman sama aku (ini paling penting buat aku wkwkwk) terus kamu hormat sama orang tua dengan bukti kamu bantuin mama jualan kalo katamu sih udah kewajiban tapi ngga semua anak mau melakukan kewajiban nya sama orangtuanya, terus kamu itu pinter, tegas, pola pikirnya juga keren, jujur aku kagum sama kamu makanya aku suuuaaayangggg sama kamu ehehehe. Akhirnya kita chatingan tiap hari walaupun topik nya gitu" aja tapi aku tetep senengg bisa chatingan sama kamu dan kita jadian tanpa aku nembak ahahahayy dan nggaa kerasa udah 1 tahun jalanin hubungan ini walaupun kita sering ada problem dan pernah putus wkwkwk tapi its okeyy soalnya kita balikan wkwkwk. Andai kamu tau ya grace walaupun katamu aku kayak anak kecil tapi rasa sayangku ke kamu ngga kecil dan ngga mengecil, udah aku cuma mau ngomong gitu intinya aku makasih banget udah nerima aku apa adanya, selalu ada buat aku, sayang sama aku (dulu aku ngerasa ga pantes buat ngerasain cinta, tapi sama kamu akhirnya pikiranku itu hilang). maaf yaa kalo puitis tapi kalo kamu tau ini aku ngetik 100% dari hatiku.</p>
+      
+        <button class="btn" onclick="showPopup()">Pesan Terakhir</button>
+  </section>
+  
+  <div class="popup" id="welcomePopup">
+    <div class="popup-box">
+      <h3>Hai Grace Lukas Bilang</h3>
+      <p>Aku bikin website kecil ini buat kamu. Scroll pelan pelan yaa.</p>
+      <button onclick="tutupPopup()">Mulai</button>
+    </div>
+  </div>
+  
+  <div class="final-popup" id="finalPopup">
+    <div class="popup-content">
+      <h3>Untuk Grace Dari Lukas</h3>
+      <p>
+      Terima kasih sudah jadi bagian dari hidupku selama 1 tahun ini.  
+      Aku harap setelah ini kita masih bisa bikin banyak cerita baru bareng.
+      </p>
+      <button onclick="closePopup()">Tutup</button>
+    </div>
+  </div>
+  
+  <footer>
+    <h5>&copy; Dari Orang Yang Kamu Sayang, Lukas | 3-3-2026</h5>
+  </footer>
+</body>
+
+<script>
+function tutupPopup(){
+  document.getElementById("welcomePopup").style.display = "none";
+}
+
+function showPopup(){
+  document.getElementById("finalPopup").style.display = "flex";
+}
+
+function closePopup(){
+  document.getElementById("finalPopup").style.display = "none";
+}
+</script>
+</html>
